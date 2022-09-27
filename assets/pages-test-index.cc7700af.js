@@ -1,0 +1,1 @@
+import{o as e,e as r,r as s,h as a}from"./index.2d763f7b.js";import{_ as n,a as o}from"./sys.87363940.js";const t={};function f(n,t){const f=s(a("sys"),o);return e(),r(f)}(0,Object.defineProperty)(f,"name",{value:"_sfc_render",configurable:!0});var c=n(t,[["render",f]]);export{c as default};
