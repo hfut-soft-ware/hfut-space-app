@@ -1,0 +1,38 @@
+{
+  "sfc-script-setup-page": {
+    "scope": "vue",
+    "prefix": "page",
+    "body": [
+      "<template>",
+      "  <meta title=\"$1\" />",
+      "  $2",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "  import { $3 } from '@/hooks'",
+      "</script>",
+      "",
+      "<style lang=\"scss\"></style>"
+    ]
+  },
+  "sfc-script-setup-component": {
+    "scope": "vue",
+    "prefix": "vue",
+    "body": [
+      "<template>",
+      "  $1",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "  import { $3 } from '@/hooks'",
+      "</script>",
+      "",
+      "<style lang=\"scss\"></style>"
+    ]
+  },
+  "debug": {
+    "scope": "vue,javascript,typescript",
+    "prefix": "debug",
+    "body": ["app.debug('$1',$1)"]
+  }
+}

@@ -1,0 +1,52 @@
+diff --git a/dist/index.cjs b/dist/index.cjs
+index ee85f8bb1546edc8a65f7ada04ea1af0423b9d34..38552891be0fd8e3c711dd5900a5e41b3255e8e0 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -17,7 +17,7 @@ const preflights = [
+     getCSS(ctx) {
+       if (ctx.theme.preflightBase) {
+         const css = core.entriesToCss(Object.entries(ctx.theme.preflightBase));
+-        const roots = core.toArray(ctx.theme.preflightRoot ?? ["*,::before,::after", "::backdrop"]);
++        const roots = core.toArray(ctx.theme.preflightRoot ?? [":not(not),::before,::after", "::backdrop"]);
+         return roots.map((root) => `${root}{${css}}`).join("");
+       }
+     }
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 510842c2eacd5cde9744e401333a6c07007d7cae..d2af0efa813e0f98fef12fbe99c48ee402d46b2f 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -14,7 +14,7 @@ const preflights = [
+     getCSS(ctx) {
+       if (ctx.theme.preflightBase) {
+         const css = entriesToCss(Object.entries(ctx.theme.preflightBase));
+-        const roots = toArray(ctx.theme.preflightRoot ?? ["*,::before,::after", "::backdrop"]);
++        const roots = core.toArray(ctx.theme.preflightRoot ?? [":not(not),::before,::after", "::backdrop"]);
+         return roots.map((root) => `${root}{${css}}`).join("");
+       }
+     }
+diff --git a/dist/shared/preset-mini.690517b1.mjs b/dist/shared/preset-mini.690517b1.mjs
+index 60148de3d5097169b2702fb0557d401d5d898791..de18c65a8b373ed9230aba780136a1ed00dd61dc 100644
+--- a/dist/shared/preset-mini.690517b1.mjs
++++ b/dist/shared/preset-mini.690517b1.mjs
+@@ -180,7 +180,7 @@ function rem(str) {
+   const [, n, unit] = match;
+   const num = parseFloat(n);
+   if (!Number.isNaN(num))
+-    return unit ? `${round(num)}${unit}` : `${round(num / 4)}rem`;
++    return unit ? `${round(num)}${unit}` : process.env.UNI_PLATFORM?.startsWith('mp') ? `${round(num / 4)}rem` : `${round(num / 4)}rem`;
+ }
+ function px(str) {
+   if (str.match(unitOnlyRE))
+diff --git a/dist/shared/preset-mini.b1936363.cjs b/dist/shared/preset-mini.b1936363.cjs
+index d920dcca28653381cc18fa38adb8392a6334b6ba..d3a091ecd3b94d2dec75760abcae2ec8f51420ea 100644
+--- a/dist/shared/preset-mini.b1936363.cjs
++++ b/dist/shared/preset-mini.b1936363.cjs
+@@ -182,7 +182,7 @@ function rem(str) {
+   const [, n, unit] = match;
+   const num = parseFloat(n);
+   if (!Number.isNaN(num))
+-    return unit ? `${round(num)}${unit}` : `${round(num / 4)}rem`;
++    return unit ? `${round(num)}${unit}` : process.env.UNI_PLATFORM?.startsWith('mp') ? `${round(num / 4)}rem` : `${round(num / 4)}rem`;
+ }
+ function px(str) {
+   if (str.match(unitOnlyRE))
