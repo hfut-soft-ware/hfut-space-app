@@ -42,6 +42,7 @@ export default defineConfig({
     'flex-center': 'flex flex-row justify-center items-center',
     'flex-center-col': 'flex flex-col justify-center items-center',
     'text-holder': 'text-[#797F8B]',
+    'center': 'flex items-center justify-center',
   },
   include: [path.resolve(__dirname, 'src', '**')],
 })

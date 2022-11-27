@@ -28,6 +28,7 @@ specifiers:
   '@dcloudio/uni-ui': ^1.4.20
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3060120220907002
   '@iconify-json/ri': ^1.1.0
+  '@tanstack/vue-query': ^4.18.0
   '@types/lodash': ^4.14.179
   '@types/power-assert': ^1.5.8
   '@types/weixin-app': ^2.9.3
@@ -35,6 +36,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.10.1
   '@unocss/preset-attributify': ^0.26.2
   '@unocss/preset-icons': ^0.26.2
+  '@vueuse/core': ^9.6.0
   autoprefixer: ^10.4.2
   commitizen: ^4.2.4
   cz-customizable: ^6.3.0
@@ -66,6 +68,7 @@ specifiers:
   rollup-plugin-visualizer: ^5.6.0
   sass: ^1.49.9
   typescript: ^4.6.3
+  uni-ajax: ^2.4.5
   unocss: ^0.46.5
   unocss-applet: ^0.2.8
   unplugin-auto-import: ^0.6.6
@@ -83,6 +86,8 @@ dependencies:
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3060120220907002_vue@3.2.45
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3060120220907002_vue@3.2.45
   '@dcloudio/uni-ui': 1.4.23_pifsjzhzegaycmvo2z5n4udpna
+  '@tanstack/vue-query': 4.18.0_vue@3.2.45
+  '@vueuse/core': 9.6.0_vue@3.2.45
   dayjs: 1.11.6
   is: 3.3.0
   js-base64: 3.7.3
@@ -92,6 +97,7 @@ dependencies:
   pinia: 2.0.26_mgnvym7yiazkylwwogi5r767ue
   pinia-class-component: 0.9.4_pinia@2.0.26+vue@3.2.45
   pinia-plugin-persist-uni: 1.2.0_pinia@2.0.26+vue@3.2.45
+  uni-ajax: 2.4.5
   vue: 3.2.45
 
 devDependencies:
@@ -132,7 +138,7 @@ devDependencies:
   typescript: 4.9.3
   unocss: 0.46.5_vite@2.9.15
   unocss-applet: 0.2.18
-  unplugin-auto-import: 0.6.9_vite@2.9.15
+  unplugin-auto-import: 0.6.9_xbmdkanscfjoi4rlzcxf6weili
   vite: 2.9.15_sass@1.56.1
   vite-plugin-inspect: 0.3.15_vite@2.9.15
   vite-plugin-restart: 0.1.1_vite@2.9.15
@@ -1124,6 +1130,33 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@tanstack/match-sorter-utils/8.7.0:
+    resolution: {integrity: sha512-OgfIPMHTfuw9JGcXCCoEHWFP/eSP2eyhCYwkrFnWBM3NbUPAgOlFP11DbM7cozDRVB0XbPr1tD4pLAtWKlVUVg==}
+    engines: {node: '>=12'}
+    dependencies:
+      remove-accents: 0.4.2
+    dev: false
+
+  /@tanstack/query-core/4.18.0:
+    resolution: {integrity: sha512-PP4mG8MD08sq64RZCqMfXMYfaj7+Oulwg7xZ/fJoEOdTZNcPIgaOkHajZvUBsNLbi/0ViMvJB4cFkL2Jg2WPbw==}
+    dev: false
+
+  /@tanstack/vue-query/4.18.0_vue@3.2.45:
+    resolution: {integrity: sha512-OC4RLIMOOeWGgKr8SIKsV0p6B9YVRv7pHovHFZZN2vE6F84yQH1SZ1rrqlAvNQ1nvpYwDhUZF4i5XbSyXqg40g==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.2
+      vue: ^2.5.0 || ^3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@tanstack/match-sorter-utils': 8.7.0
+      '@tanstack/query-core': 4.18.0
+      '@vue/devtools-api': 6.4.5
+      vue: 3.2.45
+      vue-demi: 0.13.11_vue@3.2.45
+    dev: false
+
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -1224,6 +1257,9 @@ packages:
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: true
+
+  /@types/web-bluetooth/0.0.16:
+    resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
 
   /@types/weixin-app/2.9.3:
     resolution: {integrity: sha512-THcFm2f1koYkdE9HYeh6gg0Q2Tu9IkNoxzBNr40MAfZy6EqjHaND2GqYl4Ze1RkosAbMXfBlCs1kvJfMgKDFVw==}
@@ -1749,6 +1785,28 @@ packages:
 
   /@vue/shared/3.2.45:
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
+
+  /@vueuse/core/9.6.0_vue@3.2.45:
+    resolution: {integrity: sha512-qGUcjKQXHgN+jqXEgpeZGoxdCbIDCdVPz3QiF1uyecVGbMuM63o96I1GjYx5zskKgRI0FKSNsVWM7rwrRMTf6A==}
+    dependencies:
+      '@types/web-bluetooth': 0.0.16
+      '@vueuse/metadata': 9.6.0
+      '@vueuse/shared': 9.6.0_vue@3.2.45
+      vue-demi: 0.13.11_vue@3.2.45
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
+  /@vueuse/metadata/9.6.0:
+    resolution: {integrity: sha512-sIC8R+kWkIdpi5X2z2Gk8TRYzmczDwHRhEFfCu2P+XW2JdPoXrziqsGpDDsN7ykBx4ilwieS7JUIweVGhvZ93w==}
+
+  /@vueuse/shared/9.6.0_vue@3.2.45:
+    resolution: {integrity: sha512-/eDchxYYhkHnFyrb00t90UfjCx94kRHxc7J1GtBCqCG4HyPMX+krV9XJgVtWIsAMaxKVU4fC8NSUviG1JkwhUQ==}
+    dependencies:
+      vue-demi: 0.13.11_vue@3.2.45
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
 
   /@yarnpkg/lockfile/1.1.0:
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -5775,6 +5833,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /remove-accents/0.4.2:
+    resolution: {integrity: sha1-CkPTqq4egNuRngeuJUsoXZ4ce7U=}
+    dev: false
+
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -6540,6 +6602,10 @@ packages:
       busboy: 1.6.0
     dev: true
 
+  /uni-ajax/2.4.5:
+    resolution: {integrity: sha512-JdqoyfLaP+HJHvW44pqOLVrC2tquyQJyYuLtM/Vox1/OWTOiPrSh9zpIc62Dtd4/rkBN9vGUhRcyeqFocv5Hcg==}
+    dev: false
+
   /unist-util-stringify-position/2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
     dependencies:
@@ -6614,7 +6680,7 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
-  /unplugin-auto-import/0.6.9_vite@2.9.15:
+  /unplugin-auto-import/0.6.9_xbmdkanscfjoi4rlzcxf6weili:
     resolution: {integrity: sha512-IqgT7AoRrNQwNhiF/wDH3sMEDX8SqCYBEgJzwdg5441b5aiC5VwZz0J0wYqkaKu89YkZE9DG6rQ2JpFfZv1iiQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -6625,6 +6691,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.5.2
       '@rollup/pluginutils': 4.2.1
+      '@vueuse/core': 9.6.0_vue@3.2.45
       local-pkg: 0.4.2
       magic-string: 0.26.7
       resolve: 1.22.1
@@ -6828,7 +6895,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.45
-    dev: false
 
   /vue-eslint-parser/8.3.0_eslint@8.13.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}

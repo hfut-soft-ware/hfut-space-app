@@ -4,9 +4,7 @@ const props = defineProps({
 })
 
 const handleLinkClick = () => {
-  uni.navigateTo({
-    url: `./webView?url=${props.href}`,
-  })
+  app.to('/pages/web-view/index', { url: props.href })
 }
 </script>
 

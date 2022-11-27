@@ -1,4 +1,4 @@
-import { App as VueApp } from 'vue'
+import type { App as VueApp } from 'vue'
 import store from './store'
 import server from './server'
 import preset from './preset'
@@ -10,10 +10,10 @@ export const app = {
 
 export const appPlugin = {
   install: (vueApp: VueApp, options) => {
-    app.catch(() => (window['app'] = app))
-    app.catch(() => (uni['app'] = app))
-    app.catch(() => (wx['app'] = app))
-    app.catch(() => (wx['uni'] = uni))
+    app.catch(() => (window.app = app))
+    app.catch(() => (uni.app = app))
+    app.catch(() => (wx.app = app))
+    app.catch(() => (wx.uni = uni))
     vueApp.config.globalProperties.app = app
     vueApp.config.globalProperties.uni = uni
     vueApp.use(store)
@@ -23,12 +23,12 @@ export const appPlugin = {
       let name = k.replace(/^\.\/utils\//, '')
       try {
         v?.default?.(vueApp)
-        sum += name + ' '
+        sum += `${name} `
       } catch (error) {
         console.error('[appPlugin 加载失败]', `in ${name}\n`, error)
       }
     })
-    if (import.meta.env.DEV) app.success('appPlugin 加载完成', sum)
+    if (import.meta.env.DEV) { app?.success('appPlugin 加载完成', sum) }
   },
 }
 

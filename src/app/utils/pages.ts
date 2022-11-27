@@ -1,25 +1,25 @@
-import { debounce, DebouncedFuncLeading } from 'lodash'
+import type { DebouncedFuncLeading } from 'lodash'
+import { debounce } from 'lodash'
 
 export function getPath(p: string, currentGroup: string) {
   let [group, path] = Array.from(p.match(/^(?:#(.*?)(?:\/|$))?(.*)$/)).slice(1)
-  if (group === undefined) return path
-  else return `/pages/${group || currentGroup}/${path || 'index'}`
+  if (group === undefined) { return path } else { return `/pages/${group || currentGroup}/${path || 'index'}` }
 }
 
 let to = debounce(
   (path: string, obj?: any) => {
-    const currentPath = getCurrentPages().pop()['route']
+    const currentPath = getCurrentPages().pop().route
     const currentGroup = currentPath.split('/')[1]
     const id = String.rand()
 
     const pkg = { data: obj, from: currentPath, id }
-    uni.$on(id + '_query', cb => cb(pkg))
+    uni.$on(`${id}_query`, cb => cb(pkg))
     let url = getPath(path, currentGroup)
     uni
-      .navigateTo({ url: url + '?id=' + id })
+      .navigateTo({ url: `${url}?id=${id}` })
       .then(() => app.info('页面切换', obj || '', '=>', path == url ? path : `${path} (${url})`))
-      .catch(err => app.error('页面切换失败', '=>' + path, err))
-    return new Promise<any>((r, e) => (uni.$once(id + '_resolve', r), uni.$once(id + '_reject', e)))
+      .catch(err => app.error('页面切换失败', `=>${path}`, err))
+    return new Promise<any>((r, e) => (uni.$once(`${id}_resolve`, r), uni.$once(`${id}_reject`, e)))
   },
   50,
   { leading: true, trailing: false },
@@ -27,12 +27,11 @@ let to = debounce(
 
 const back = debounce(
   (data?: any, type: 'resolve' | 'reject' = 'resolve') => {
-    if (data) console.log('回调:', data)
-    const { id } = useQuery()
-    uni.$emit(id.value + '_' + type, data)
+    if (data) { console.log('回调:', data) }
+    const { id } = usePage()
+    uni.$emit(`${id.value}_${type}`, data)
     const url = '/pages/index/index'
-    if (getCurrentPages().length > 1) uni.navigateBack()
-    else uni.redirectTo({ url }).catch(() => uni.switchTab({ url }))
+    if (getCurrentPages().length > 1) { uni.navigateBack() } else { uni.redirectTo({ url }).catch(() => uni.switchTab({ url })) }
   },
   50,
   { leading: true, trailing: false },
