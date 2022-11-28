@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core'
 import { loginRequest } from '@/services/apis/auth'
-import MuiButton from '@/components/MuiButton.vue'
-import MuiInput from '@/components/MuiInput.vue'
-import Link from '@/components/Link.vue'
-import Alert from '@/components/Alert.vue'
+import MuiButton from '@/components/mui/MuiButton.vue'
+import MuiInput from '@/components/mui/MuiInput.vue'
+import Link from '@/components/mui/Link.vue'
+import Alert from '@/components/mui/Alert.vue'
 import NavigationBar from '@/components/NavigationBar.vue'
 
 let form = reactive({
@@ -18,10 +18,15 @@ let errors = reactive({
 })
 
 let loading = $ref(false)
+let errorData = $ref(false)
 
 const mutation = useMutation(loginRequest, {
   onSuccess(data) {
     console.log(data)
+  },
+  onError(error) {
+    errorData = true
+    console.log(error)
   },
   onSettled() {
     loading = false
@@ -88,8 +93,14 @@ const onSubmit = useDebounceFn(() => {
         </p>
       </div>
       <div gap2>
-        <Alert>密码输错太多次是会被教务暂时冻结五分钟的哦</Alert>
-        <Alert>没有教务系统是不能登入的哦</Alert>
+        <Alert variant="info">
+          密码输错太多次是会被教务暂时冻结五分钟的哦
+        </Alert>
+      </div>
+      <div v-if="errorData" gap2>
+        <Alert variant="info">
+          密码输错太多次是会被教务暂时冻结五分钟的哦
+        </Alert>
       </div>
     </header>
     <div grid gap5>
@@ -110,7 +121,7 @@ const onSubmit = useDebounceFn(() => {
         @input="validate(false, false)"
       />
       <div flex justify-end>
-        <Link href="https://cas.hfut.edu.cn/cas/forget?service=https://cas.hfut.edu.cn/cas/oauth2.0/callbackAuthorize?client_id=BsHfutEduPortal&redirect_uri=https%3A%2F%2Fone.hfut.edu.cn%2F&response_type=code&client_name=CasOAuthClient">
+        <Link underline href="https://cas.hfut.edu.cn/cas/forget?service=https://cas.hfut.edu.cn/cas/oauth2.0/callbackAuthorize?client_id=BsHfutEduPortal&redirect_uri=https%3A%2F%2Fone.hfut.edu.cn%2F&response_type=code&client_name=CasOAuthClient">
           忘记密码了？点我找回
         </Link>
       </div>

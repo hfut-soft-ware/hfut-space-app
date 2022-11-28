@@ -4,4 +4,6 @@ import { PersistAll, Pinia, Store } from '../utils'
 @PersistAll()
 export class User extends Pinia {
   name = 'user'
+
+  token = ''
 }

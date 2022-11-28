@@ -14,7 +14,6 @@ import Espower from './build/vite-plugin-espower'
 import Define from './build/vite-plugin-define'
 
 import ImportsConfig from './build/imports.config'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
@@ -25,9 +24,7 @@ export default defineConfig({
       'lodash': 'lodash-es',
     },
   },
-  server: {
-    watch: { ignored: ['**/dist/**'] },
-  },
+  server: { watch: { ignored: ['**/dist/**'] } },
   plugins: [
     Inspect(), // vite分析工具
     UniMeta(), // 自动生成页面meta信息和路由并注册pages.json

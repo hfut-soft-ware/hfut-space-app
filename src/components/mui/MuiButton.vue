@@ -23,7 +23,7 @@ const onClick = (e: Event) => {
 <template>
   <div
     class="bg-[#00AB55]"
-    :class="[props.loading ? '!bg-[#E5E8EB]' : 'mui-button']"
+    :class="[props.loading as Boolean ? '!bg-[#E5E8EB]' : 'mui-button']"
     relative
     text-white
     px5

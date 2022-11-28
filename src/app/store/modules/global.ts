@@ -1,7 +1,6 @@
-import { Persist, Pinia, Store } from '../utils'
+import { Pinia, Store } from '../utils'
 
 @Store
 export class Global extends Pinia {
-  @Persist
   mode = 'light'
 }

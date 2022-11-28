@@ -16,3 +16,4 @@ declare namespace UniApp {
 type func<P extends any[] = any[], R = any> = (...args: P) => R
 
 type AObjectHasAnyKeys = { [key in any]: any }
+
