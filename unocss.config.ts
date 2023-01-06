@@ -10,6 +10,8 @@ import {
 } from 'unocss'
 import { transformerApplet, transformerAttributify } from 'unocss-applet'
 import { times } from 'lodash'
+import { MuiTheme } from './build/theme/index'
+import { MuiRules } from './build/theme/rules'
 
 const presets: Preset[] = []
 const transformers: SourceCodeTransformer[] = []
@@ -35,6 +37,7 @@ export default defineConfig({
       }
       return o
     }, {}),
+    ...MuiTheme,
   },
   presets: [presetUno(), presetIcons(), ...presets],
   transformers: [transformerDirectives(), transformerVariantGroup(), ...transformers],
@@ -45,4 +48,7 @@ export default defineConfig({
     'center': 'flex items-center justify-center',
   },
   include: [path.resolve(__dirname, 'src', '**')],
+  rules: [
+    ...MuiRules,
+  ],
 })

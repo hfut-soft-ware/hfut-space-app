@@ -11,8 +11,10 @@ const emits = defineEmits(['click'])
 let clicked = $ref(false)
 
 const onClick = (e: Event) => {
-  emits('click', e)
-  clicked = true
+  if (!props.loading) {
+    emits('click', e)
+    clicked = true
+  }
 
   setTimeout(() => {
     clicked = false
