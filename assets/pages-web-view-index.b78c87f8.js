@@ -1,0 +1,1 @@
+import{k as s,Z as a,_ as e,m as r,C as l,D as t,z as n,a2 as o,G as u,H as c}from"./index.05b5969f.js";import{a as f}from"./sys.fcea0710.js";const m=s({__name:"index",setup(s){const m=a({url:""}),d=e(m,"data");return console.log(d.value),(s,a)=>{const e=o,m=u(c("sys"),f);return r(),l(m,null,{default:t((()=>[n(e,{src:d.value.url},null,8,["src"])])),_:1})}}});export{m as default};
